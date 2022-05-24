@@ -1,0 +1,242 @@
+binary = []
+hexa = []
+
+print("1) Denary to Binary")
+print("2) Denary to Hexadecimal")
+print("3) Binary to Denary")
+print("4) Binary to Hexadecimal")
+conversion = int(input("Please choose your conversion method: "))
+
+def den_to_bin(denary):
+	if denary > 256:
+		return error
+
+	if denary >= 128:
+		binary.append("1")
+		denary = denary - 128
+	else: 
+		binary.append("0")
+
+	if denary >= 64:
+		binary.append("1")
+		denary = denary - 64
+	else:
+		binary.append("0")
+
+	if denary >= 32:
+		binary.append("1")
+		denary = denary - 32
+	else:
+		binary.append("0")
+
+	if denary >= 16:
+		binary.append("1")
+		denary = denary - 16
+	else:
+		binary.append("0")
+
+	if denary >= 8:
+		binary.append("1")
+		denary = denary - 8
+	else:
+		binary.append("0")
+
+	if denary >= 4:
+		binary.append("1")
+		denary = denary - 4
+	else:
+		binary.append("0")
+
+	if denary >= 2:
+		binary.append("1")
+		denary = denary - 2
+	else:
+		binary.append("0")
+
+	if denary >= 1:
+		binary.append("1")
+		denary = denary - 1
+	else:
+		binary.append("0")
+
+	return binary
+
+
+
+def den_to_hexa(denary):
+	binary = den_to_bin(denary)
+	
+	nibbleLeft = 0
+	nibbleRight = 0
+	
+	if binary[0] == '1':
+		nibbleLeft = nibbleLeft + 8
+
+	if binary[1] == '1':
+		nibbleLeft = nibbleLeft + 4
+
+	if binary[2] == '1':
+		nibbleLeft = nibbleLeft + 2
+
+	if binary[3] == '1':
+		nibbleLeft = nibbleLeft + 1
+
+	if nibbleLeft < 10:
+		hexa.append(nibbleLeft)
+	elif nibbleLeft == 10:
+		hexa.append("A")
+	elif nibbleLeft == 11:
+		hexa.append("B")
+	elif nibbleLeft == 12:
+		hexa.append("C")
+	elif nibbleLeft == 13:
+		hexa.append("D")
+	elif nibbleLeft == 14:
+		hexa.append("F")
+
+	
+	
+	if binary[4] == '1':
+		nibbleRight = nibbleRight + 8
+
+	if binary[5] == '1':
+		nibbleRight = nibbleRight + 4
+
+	if binary[6] == '1':
+		nibbleRight = nibbleRight + 2
+
+	if binary[7] == '1':
+		nibbleRight = nibbleRight + 1
+
+	if nibbleRight > 9:
+		if nibbleRight == 10:
+			hexa.append("A")
+		if nibbleRight == 11:
+			hexa.append("B")
+		if nibbleRight == 12:
+			hexa.append("C")
+		if nibbleRight == 13:
+			hexa.append("D")
+		if nibbleRight == 14:
+			hexa.append("F")
+	else:
+		hexa.append(nibbleRight)	
+
+	return hexa
+
+
+
+
+
+def bin_to_den(bin):
+
+	if len(bin) != 8:
+		for i in range(0 , 8 - len(bin)):
+			bin = "0" + bin
+
+	den = 0
+
+	if bin[0] == "1":
+		den = den + 128
+	if bin[1] == "1":
+		den = den + 64
+	if bin[2] == "1":
+		den = den + 32
+	if bin[3] == "1":
+		den = den + 16
+	if bin[4] == "1":
+		den = den + 8
+	if bin[5] == "1":
+		den = den + 4
+	if bin[6] == "1":
+		den = den + 2
+	if bin[7] == "1":
+		den = den + 1
+
+	return den
+
+	
+
+
+
+def bin_to_hexa(bin):
+	
+	if len(bin) != 8:
+		for i in range(0 , 8 - len(bin)):
+			bin = "0" + bin
+
+	nibbleLeft = 0
+	nibbleRight = 0
+
+	if bin[0] == "1":
+		nibbleLeft = nibbleLeft + 8
+	if bin[1] == "1":
+		nibbleLeft = nibbleLeft + 4
+	if bin[2] == "1":
+		nibbleLeft = nibbleLeft + 2
+	if bin[3] == "1":
+		nibbleLeft = nibbleLeft + 1
+	
+	if nibbleLeft > 9:
+		if nibbleLeft == 10:
+			hexa.append("A")
+		if nibbleRight == 11:
+			hexa.append("B")
+		if nibbleRight == 12:
+			hexa.append("C")
+		if nibbleRight == 13:
+			hexa.append("D")
+		if nibbleRight == 14:
+			hexa.append("E")
+		if nibbleRight == 15:
+			hexa.append("F")
+	else:
+		hexa.append(nibbleLeft)
+
+	if bin[4] == "1":
+		nibbleRight = nibbleRight + 8
+	if bin[5] == "1":
+		nibbleRight = nibbleRight + 4
+	if bin[6] == "1":
+		nibbleRight = nibbleRight + 2
+	if bin[7] == "1":
+		nibbleRight = nibbleRight + 1
+
+	if nibbleRight > 9:
+		if nibbleRight == 10:
+			hexa.append("A")
+		if nibbleRight == 11:
+			hexa.append("B")
+		if nibbleRight == 12:
+			hexa.append("C")
+		if nibbleRight == 13:
+			hexa.append("D")
+		if nibbleRight == 14:
+			hexa.append("E")
+		if nibbleRight == 15:
+			hexa.append("F")
+	else:
+		hexa.append(nibbleRight)
+
+	return hexa
+
+
+
+
+
+
+if conversion == 1:
+	denary = int(input("Enter a denary number: "))
+	print(den_to_bin(denary))
+
+elif conversion == 2:
+	denary = int(input("Enter a denary number: "))
+	print(den_to_hexa(denary))
+
+elif conversion == 3:
+	bin = input("Enter a binary number: ")
+	print(bin_to_den(bin))
+
+elif conversion == 4:
+	bin = input("Enter a binary number: ")
+	print(bin_to_hexa(bin))
